@@ -21,7 +21,7 @@
 		"psr/http-message-implementation": "^1.0"
 	},
 	"require-dev": {
-		"duon/dev": "^1.1",
+		"duon/dev": "dev-main",
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
 		"ernst/coverlyzer": "^0.2",
 		"guzzlehttp/psr7": "^2",
