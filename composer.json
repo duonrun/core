@@ -5,31 +5,26 @@
 	"license": "MIT",
 	"authors": [
 		{
-			"name": "ebene fünf GmbH",
-			"email": "info@ebenefuenf.de"
+			"name": "Thomas Ernst",
+			"email": "duon@ebenefuenf.de"
 		}
 	],
-	"minimum-stability": "dev",
-	"prefer-stable": true,
+	"homepage": "https://duon.run/core",
 	"require": {
-		"php": ">=8.3",
-		"duon/cli": "dev-main",
-		"duon/registry": "dev-main",
-		"duon/router": "dev-main",
+		"php": "^8.5",
+		"duon/cli": "^0.1",
+		"duon/registry": "^0.1",
+		"duon/router": "^0.1",
 		"laminas/laminas-httphandlerrunner": "^2.4",
 		"psr/http-factory": "^1.0",
 		"psr/http-message-implementation": "^1.0"
 	},
 	"require-dev": {
-		"duon/dev": "dev-main",
-		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-		"ernst/coverlyzer": "^0.2",
+		"duon/dev": "^2.5",
 		"guzzlehttp/psr7": "^2",
 		"laminas/laminas-diactoros": "^2 || ^3",
 		"nyholm/psr7": "^1.5",
-		"nyholm/psr7-server": "^1",
-		"phpunit/phpunit": "^12.0",
-		"vimeo/psalm": "^6.10"
+		"nyholm/psr7-server": "^1"
 	},
 	"autoload": {
 		"psr-4": {
@@ -68,16 +63,6 @@
 			"composer check-github",
 			"composer lint"
 		],
-		"docs": [
-			"composer docstest",
-			"./venv/bin/python ./venv/bin/mkdocs build"
-		],
-		"docserve": "./venv/bin/python ./venv/bin/mkdocs serve",
 		"docstest": "./vendor/bin/docs-test-runner ./docs/code"
-	},
-	"config": {
-		"allow-plugins": {
-			"dealerdirect/phpcodesniffer-composer-installer": true
-		}
 	}
 }
