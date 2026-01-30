@@ -35,6 +35,4 @@ Incomplete documentation can be found on the website: [duon.dev/core](https://du
 
 ## License
 
-Duon Core is released under the MIT [license](LICENSE.md).
-
-Copyright Thomas Ernst. All rights reserved.
+This project is licensed under the [MIT license](LICENSE.md).
