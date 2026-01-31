@@ -12,6 +12,7 @@ use Duon\Core\Exception\HttpMethodNotAllowed;
 use Duon\Core\Exception\HttpNotFound;
 use Duon\Core\Exception\HttpUnauthorized;
 use Duon\Core\Request;
+use ReflectionMethod;
 use stdClass;
 
 final class ExceptionTest extends TestCase
@@ -151,57 +152,43 @@ final class ExceptionTest extends TestCase
 		$this->assertSame($psrRequest, $exception->request());
 	}
 
-	public function testGetPrettyTraceWithVariousArgTypes(): void
+	public function testGetPrettyTraceStructure(): void
 	{
-		$exception = $this->createExceptionWithArgs(
-			'string arg',
-			['array', 'arg'],
-			null,
-			true,
-			false,
-			new stdClass(),
-			42,
-			3.14,
-		);
-
+		$exception = new HttpNotFound();
 		$trace = $exception->getPrettyTrace();
 
-		$this->assertStringContainsString("'string arg'", $trace);
-		$this->assertStringContainsString('Array', $trace);
-		$this->assertStringContainsString('NULL', $trace);
-		$this->assertStringContainsString('true', $trace);
-		$this->assertStringContainsString('false', $trace);
-		$this->assertStringContainsString('stdClass', $trace);
-		$this->assertStringContainsString('42', $trace);
-		$this->assertStringContainsString('3.14', $trace);
 		$this->assertStringContainsString('<p class="trace">', $trace);
 		$this->assertStringContainsString('<span class="trace-number">', $trace);
+		$this->assertStringContainsString('<span class="trace-file">', $trace);
+		$this->assertStringContainsString('<span class="trace-line-number">', $trace);
 		$this->assertStringContainsString('<code class="trace-code">', $trace);
+		$this->assertStringContainsString('#0', $trace);
 	}
 
-	public function testGetPrettyTraceWithResourceArg(): void
+	public function testFormatTraceArgWithVariousTypes(): void
 	{
+		$exception = new HttpNotFound();
+		$method = new ReflectionMethod($exception, 'formatTraceArg');
+
+		$this->assertSame("'string arg'", $method->invoke($exception, 'string arg'));
+		$this->assertSame('Array', $method->invoke($exception, ['array', 'arg']));
+		$this->assertSame('NULL', $method->invoke($exception, null));
+		$this->assertSame('true', $method->invoke($exception, true));
+		$this->assertSame('false', $method->invoke($exception, false));
+		$this->assertSame('stdClass', $method->invoke($exception, new stdClass()));
+		$this->assertSame('42', $method->invoke($exception, 42));
+		$this->assertSame('3.14', $method->invoke($exception, 3.14));
+	}
+
+	public function testFormatTraceArgWithResource(): void
+	{
+		$exception = new HttpNotFound();
+		$method = new ReflectionMethod($exception, 'formatTraceArg');
+
 		$resource = fopen('php://memory', 'r');
-		$exception = $this->createExceptionWithArgs($resource);
-		$trace = $exception->getPrettyTrace();
+		$result = $method->invoke($exception, $resource);
 		fclose($resource);
 
-		$this->assertStringContainsString('stream', $trace);
-	}
-
-	private function createExceptionWithArgs(mixed ...$args): HttpNotFound
-	{
-		try {
-			$this->throwExceptionWithArgs(...$args);
-		} catch (HttpNotFound $e) {
-			return $e;
-		}
-
-		return new HttpNotFound();
-	}
-
-	private function throwExceptionWithArgs(mixed ...$args): never
-	{
-		throw new HttpNotFound(null, $args);
+		$this->assertSame('stream', $result);
 	}
 }
