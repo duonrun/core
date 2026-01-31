@@ -65,4 +65,30 @@ final class ResponseFileTest extends TestCase
 		$file = self::FIXTURES . '/public/static/pixel.jpg';
 		Response::create($this->factory())->file($file);
 	}
+
+	public function testFileResponseContentTypesForTextFiles(): void
+	{
+		$cases = [
+			'test.js' => 'text/javascript',
+			'test.css' => 'text/css',
+			'test.json' => 'application/json',
+			'test.html' => 'text/html',
+			'test.md' => 'text/markdown',
+			'test.markdown' => 'text/markdown',
+			'test.csv' => 'text/csv',
+			'test.xml' => 'application/xml',
+			'test.xhtml' => 'application/xhtml+xml',
+		];
+
+		foreach ($cases as $filename => $expectedContentType) {
+			$file = self::FIXTURES . '/public/static/' . $filename;
+			$response = Response::create($this->factory())->file($file);
+
+			$this->assertSame(
+				$expectedContentType,
+				$response->getHeader('Content-Type')[0],
+				"Content-Type for {$filename} should be {$expectedContentType}",
+			);
+		}
+	}
 }
