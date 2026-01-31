@@ -7,6 +7,7 @@ namespace Duon\Core;
 use Duon\Core\Exception\OutOfBoundsException;
 use Duon\Core\Exception\RuntimeException;
 use Duon\Router\RequestWrapper;
+use Override;
 use Psr\Http\Message\ServerRequestInterface as PsrServerRequest;
 use Psr\Http\Message\StreamInterface as PsrStream;
 use Psr\Http\Message\UploadedFileInterface as PsrUploadedFile;
@@ -17,6 +18,7 @@ class Request implements RequestWrapper
 {
 	public function __construct(protected PsrServerRequest $psrRequest) {}
 
+	#[Override]
 	public function unwrap(): PsrServerRequest
 	{
 		return $this->psrRequest;
@@ -297,7 +299,7 @@ class Request implements RequestWrapper
 	}
 
 	private function returnOrFail(
-		array|null $array,
+		?array $array,
 		string $key,
 		mixed $default,
 		string $error,

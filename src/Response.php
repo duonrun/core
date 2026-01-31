@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Duon\Core;
 
-use finfo;
 use Duon\Core\Exception\FileNotFoundException;
 use Duon\Core\Exception\RuntimeException;
 use Duon\Router\ResponseWrapper;
+use finfo;
+use Override;
 use Psr\Http\Message\ResponseInterface as PsrResponse;
 use Psr\Http\Message\StreamFactoryInterface as PsrStreamFactory;
 use Psr\Http\Message\StreamInterface as PsrStream;
@@ -19,7 +20,7 @@ class Response implements ResponseWrapper
 {
 	public function __construct(
 		protected PsrResponse $psrResponse,
-		protected readonly PsrStreamFactory|null $streamFactory = null,
+		protected readonly ?PsrStreamFactory $streamFactory = null,
 	) {}
 
 	public static function create(Factory $factory): self
@@ -27,6 +28,7 @@ class Response implements ResponseWrapper
 		return new self($factory->response(), $factory->streamFactory());
 	}
 
+	#[Override]
 	public function unwrap(): PsrResponse
 	{
 		return $this->psrResponse;

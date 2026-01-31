@@ -7,6 +7,7 @@ namespace Duon\Core\Factory;
 use Duon\Core\Exception\RuntimeException;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
+use Override;
 use Psr\Http\Message\ServerRequestInterface;
 use Throwable;
 
@@ -32,6 +33,7 @@ class Nyholm extends AbstractFactory
 		}
 	}
 
+	#[Override]
 	public function serverRequest(): ServerRequestInterface
 	{
 		$creator = new ServerRequestCreator(

@@ -8,6 +8,7 @@ use Laminas\HttpHandlerRunner\Emitter\EmitterInterface;
 use Laminas\HttpHandlerRunner\Emitter\EmitterStack;
 use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 use Laminas\HttpHandlerRunner\Emitter\SapiStreamEmitter;
+use Override;
 use Psr\Http\Message\ResponseInterface;
 
 class Emitter implements EmitterInterface
@@ -25,6 +26,7 @@ class Emitter implements EmitterInterface
 				$this->emitter = $emitter;
 			}
 
+			#[Override]
 			public function emit(ResponseInterface $response): bool
 			{
 				if (
@@ -43,6 +45,7 @@ class Emitter implements EmitterInterface
 		$this->stack->push($conditionalEmitter);
 	}
 
+	#[Override]
 	public function emit(ResponseInterface $response): bool
 	{
 		return $this->stack->emit($response);

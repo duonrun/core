@@ -7,6 +7,7 @@ namespace Duon\Core\Factory;
 use Duon\Core\Exception\RuntimeException;
 use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\Psr7\ServerRequest;
+use Override;
 use Psr\Http\Message\ServerRequestInterface;
 use Throwable;
 
@@ -30,6 +31,7 @@ class Guzzle extends AbstractFactory
 		}
 	}
 
+	#[Override]
 	public function serverRequest(): ServerRequestInterface
 	{
 		return ServerRequest::fromGlobals();

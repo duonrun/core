@@ -11,6 +11,7 @@ use Laminas\Diactoros\ServerRequestFactory;
 use Laminas\Diactoros\StreamFactory;
 use Laminas\Diactoros\UploadedFileFactory;
 use Laminas\Diactoros\UriFactory;
+use Override;
 use Psr\Http\Message\ServerRequestInterface;
 use Throwable;
 
@@ -33,6 +34,7 @@ class Laminas extends AbstractFactory
 		}
 	}
 
+	#[Override]
 	public function serverRequest(): ServerRequestInterface
 	{
 		return ServerRequestFactory::fromGlobals();

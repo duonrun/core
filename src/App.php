@@ -16,6 +16,7 @@ use Duon\Router\Group;
 use Duon\Router\Route;
 use Duon\Router\RouteAdder;
 use Duon\Router\Router;
+use Override;
 use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -73,11 +74,13 @@ class App implements RouteAdder
 		$this->router->routes($creator, $cacheFile, $shouldCache);
 	}
 
+	#[Override]
 	public function addRoute(Route $route): Route
 	{
 		return $this->router->addRoute($route);
 	}
 
+	#[Override]
 	public function addGroup(Group $group): void
 	{
 		$this->router->addGroup($group);
@@ -160,4 +163,3 @@ class App implements RouteAdder
 		return (new Emitter())->emit($response) ? $response : false;
 	}
 }
-
