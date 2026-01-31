@@ -11,6 +11,8 @@ use Duon\Core\Exception\HttpGone;
 use Duon\Core\Exception\HttpMethodNotAllowed;
 use Duon\Core\Exception\HttpNotFound;
 use Duon\Core\Exception\HttpUnauthorized;
+use Duon\Core\Request;
+use stdClass;
 
 final class ExceptionTest extends TestCase
 {
@@ -138,5 +140,68 @@ final class ExceptionTest extends TestCase
 		$this->assertSame(666, $exception->statusCode());
 		$this->assertSame('401 payload', $exception->payload());
 		$this->assertSame('666 Other Message', $exception->title());
+	}
+
+	public function testHttpExceptionWithWrappedRequest(): void
+	{
+		$psrRequest = $this->request();
+		$request = new Request($psrRequest);
+		$exception = new HttpNotFound($request, 'payload');
+
+		$this->assertSame($psrRequest, $exception->request());
+	}
+
+	public function testGetPrettyTraceWithVariousArgTypes(): void
+	{
+		$exception = $this->createExceptionWithArgs(
+			'string arg',
+			['array', 'arg'],
+			null,
+			true,
+			false,
+			new stdClass(),
+			42,
+			3.14,
+		);
+
+		$trace = $exception->getPrettyTrace();
+
+		$this->assertStringContainsString("'string arg'", $trace);
+		$this->assertStringContainsString('Array', $trace);
+		$this->assertStringContainsString('NULL', $trace);
+		$this->assertStringContainsString('true', $trace);
+		$this->assertStringContainsString('false', $trace);
+		$this->assertStringContainsString('stdClass', $trace);
+		$this->assertStringContainsString('42', $trace);
+		$this->assertStringContainsString('3.14', $trace);
+		$this->assertStringContainsString('<p class="trace">', $trace);
+		$this->assertStringContainsString('<span class="trace-number">', $trace);
+		$this->assertStringContainsString('<code class="trace-code">', $trace);
+	}
+
+	public function testGetPrettyTraceWithResourceArg(): void
+	{
+		$resource = fopen('php://memory', 'r');
+		$exception = $this->createExceptionWithArgs($resource);
+		$trace = $exception->getPrettyTrace();
+		fclose($resource);
+
+		$this->assertStringContainsString('stream', $trace);
+	}
+
+	private function createExceptionWithArgs(mixed ...$args): HttpNotFound
+	{
+		try {
+			$this->throwExceptionWithArgs(...$args);
+		} catch (HttpNotFound $e) {
+			return $e;
+		}
+
+		return new HttpNotFound();
+	}
+
+	private function throwExceptionWithArgs(mixed ...$args): never
+	{
+		throw new HttpNotFound(null, $args);
 	}
 }
