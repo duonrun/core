@@ -1,10 +1,10 @@
 # Duon Core
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/062d5c9d41454d08b240b63bcf35bfc1)](https://app.codacy.com/gh/duon/core/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/062d5c9d41454d08b240b63bcf35bfc1)](https://app.codacy.com/gh/duon/core/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
-[![Psalm level](https://shepherd.dev/github/duon/core/level.svg?)](https://duon.dev/core)
-[![Psalm coverage](https://shepherd.dev/github/duon/core/coverage.svg?)](https://shepherd.dev/github/duon/core)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/9befc54495a54078924928e9caccadd8)](https://app.codacy.com/gh/duonrun/core/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/9befc54495a54078924928e9caccadd8)](https://app.codacy.com/gh/duonrun/core/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
+[![Psalm level](https://shepherd.dev/github/duonrun/core/level.svg?)](https://duonrun.dev/core)
+[![Psalm coverage](https://shepherd.dev/github/duonrun/core/coverage.svg?)](https://shepherd.dev/github/duonrun/core)
 
 Duon Core is a lightweight and easily extendable >=PHP 8.3 web framework.
 
@@ -30,8 +30,6 @@ Supported PSRs:
 - PSR-12 Extended Coding Style
 - PSR-15 Http Middleware
 - PSR-17 Http Factories
-
-Incomplete documentation can be found on the website: [duon.dev/core](https://duon.dev/core/)
 
 ## License
 
