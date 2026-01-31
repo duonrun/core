@@ -11,7 +11,7 @@ use Laminas\HttpHandlerRunner\Emitter\SapiStreamEmitter;
 use Override;
 use Psr\Http\Message\ResponseInterface;
 
-class Emitter implements EmitterInterface
+final class Emitter implements EmitterInterface
 {
 	protected EmitterStack $stack;
 
