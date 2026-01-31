@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Duon\Core\Exception;
 
-use Exception;
 use Duon\Core\Request;
+use Exception;
 use Psr\Http\Message\ServerRequestInterface as PsrServerRequest;
 use Throwable;
 
@@ -65,33 +65,13 @@ abstract class HttpError extends Exception implements CoreException
 			$args = "";
 
 			if (isset($frame['args'])) {
-				$args = [];
-
-				foreach ($frame['args'] as $arg) {
-					if (is_string($arg)) {
-						$args[] = "'" . $arg . "'";
-					} elseif (is_array($arg)) {
-						$args[] = "Array";
-					} elseif (is_null($arg)) {
-						$args[] = 'NULL';
-					} elseif (is_bool($arg)) {
-						$args[] = ($arg) ? "true" : "false";
-					} elseif (is_object($arg)) {
-						$args[] = get_class($arg);
-					} elseif (is_resource($arg)) {
-						$args[] = get_resource_type($arg);
-					} else {
-						$args[] = $arg;
-					}
-				}
-
-				$args = join(", ", $args);
+				$args = implode(", ", array_map($this->formatTraceArg(...), $frame['args']));
 			}
 
 			$result .= sprintf(
-				"<p class=\"trace\"><span class=\"trace-number\">#%s</span>" .
-				"<span class=\"trace-file\">%s <span class=\"trace-line-number\">(%s)</span></span>" .
-				"<code class=\"trace-code\">%s%s%s(%s)</code></p>\n",
+				"<p class=\"trace\"><span class=\"trace-number\">#%s</span>"
+				. "<span class=\"trace-file\">%s <span class=\"trace-line-number\">(%s)</span></span>"
+				. "<code class=\"trace-code\">%s%s%s(%s)</code></p>\n",
 				$traceNumber,
 				$frame['file'] ?? '',
 				$frame['line'] ?? '',
@@ -105,5 +85,35 @@ abstract class HttpError extends Exception implements CoreException
 		}
 
 		return $result;
+	}
+
+	private function formatTraceArg(mixed $arg): string
+	{
+		if (is_string($arg)) {
+			return "'" . $arg . "'";
+		}
+
+		if (is_array($arg)) {
+			return "Array";
+		}
+
+		if (is_null($arg)) {
+			return 'NULL';
+		}
+
+		if (is_bool($arg)) {
+			return $arg ? "true" : "false";
+		}
+
+		if (is_object($arg)) {
+			return get_class($arg);
+		}
+
+		if (is_resource($arg)) {
+			return get_resource_type($arg);
+		}
+
+		// int or float
+		return (string) $arg;
 	}
 }
