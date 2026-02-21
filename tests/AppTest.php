@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Duon\Core\Tests;
 
+use Duon\Container\Container;
 use Duon\Core\App;
 use Duon\Core\Factory;
 use Duon\Core\Factory\Nyholm;
@@ -11,7 +12,6 @@ use Duon\Core\Plugin;
 use Duon\Core\Tests\Fixtures\TestConfig;
 use Duon\Core\Tests\Fixtures\TestContainer;
 use Duon\Core\Tests\Fixtures\TestLogger;
-use Duon\Registry\Registry;
 use Duon\Router\Router;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -31,7 +31,7 @@ final class AppTest extends TestCase
 	{
 		$app = App::create(new Nyholm(), new TestConfig());
 
-		$this->assertInstanceOf(Registry::class, $app->registry());
+		$this->assertInstanceOf(Container::class, $app->container());
 		$this->assertInstanceOf(Router::class, $app->router());
 		$this->assertInstanceOf(TestConfig::class, $app->config());
 		$this->assertInstanceOf(Factory::class, $app->factory());
@@ -44,7 +44,7 @@ final class AppTest extends TestCase
 		$container->add('external', new stdClass());
 		$app = App::create(new Nyholm(), new TestConfig(), $container);
 
-		$this->assertInstanceof(stdClass::class, $app->registry()->get('external'));
+		$this->assertInstanceof(stdClass::class, $app->container()->get('external'));
 	}
 
 	public function testMiddlewareHelper(): void
@@ -80,17 +80,17 @@ final class AppTest extends TestCase
 	{
 		$app = $this->app();
 		$app->register('Chuck', 'Schuldiner')->asIs();
-		$registry = $app->registry();
+		$container = $app->container();
 
-		$this->assertSame('Schuldiner', $registry->get('Chuck'));
+		$this->assertSame('Schuldiner', $container->get('Chuck'));
 	}
 
 	public function testAddLoggerInstance(): void
 	{
 		$app = $this->app();
 		$app->logger(new TestLogger());
-		$registry = $app->registry();
-		$logger = $registry->get(PsrLogger::class);
+		$container = $app->container();
+		$logger = $container->get(PsrLogger::class);
 
 		$this->assertInstanceOf(TestLogger::class, $logger);
 	}
@@ -101,20 +101,20 @@ final class AppTest extends TestCase
 		$app->logger(function (): PsrLogger {
 			return new TestLogger();
 		});
-		$registry = $app->registry();
-		$logger = $registry->get(PsrLogger::class);
+		$container = $app->container();
+		$logger = $container->get(PsrLogger::class);
 
 		$this->assertInstanceOf(TestLogger::class, $logger);
 	}
 
-	public function testRegistryInitialized(): void
+	public function testContainerInitialized(): void
 	{
 		$app = $this->app();
-		$registry = $app->registry();
+		$container = $app->container();
 
-		$this->assertInstanceof(TestConfig::class, $registry->get(TestConfig::class));
-		$this->assertInstanceof(Router::class, $registry->get(Router::class));
-		$this->assertInstanceof(Factory::class, $registry->get(Factory::class));
+		$this->assertInstanceof(TestConfig::class, $container->get(TestConfig::class));
+		$this->assertInstanceof(Router::class, $container->get(Router::class));
+		$this->assertInstanceof(Factory::class, $container->get(Factory::class));
 	}
 
 	public function testLoadPlugin(): void
@@ -128,6 +128,6 @@ final class AppTest extends TestCase
 		$app = $this->app();
 		$app->load($plugin);
 
-		$this->assertInstanceOf(stdClass::class, $app->registry()->get('test-id'));
+		$this->assertInstanceOf(stdClass::class, $app->container()->get('test-id'));
 	}
 }
