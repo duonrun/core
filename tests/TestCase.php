@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Duon\Core\Tests;
 
+use Duon\Container\Container;
 use Duon\Core\App;
 use Duon\Core\Factory;
 use Duon\Core\Factory\Nyholm;
 use Duon\Core\Tests\Fixtures\TestConfig;
-use Duon\Registry\Registry;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Psr\Http\Message\ResponseInterface as PsrResponse;
@@ -37,9 +37,9 @@ class TestCase extends BaseTestCase
 		return new Nyholm();
 	}
 
-	public function registry(): Registry
+	public function container(): Container
 	{
-		return new Registry();
+		return new Container();
 	}
 
 	public function response(): PsrResponse
