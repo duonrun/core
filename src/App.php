@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Duon\Core;
 
 use Closure;
+use Duon\Container\Container as DuonContainer;
+use Duon\Container\Entry;
 use Duon\Core\ConfigInterface as Config;
 use Duon\Core\Factory;
-use Duon\Registry\Entry;
-use Duon\Registry\Registry;
 use Duon\Router\AddsBeforeAfter;
 use Duon\Router\AddsRoutes;
 use Duon\Router\Dispatcher;
@@ -34,11 +34,11 @@ class App implements RouteAdder
 	public function __construct(
 		protected readonly Factory $factory,
 		protected readonly Router $router,
-		protected readonly Registry $registry,
+		protected readonly DuonContainer $container,
 		protected readonly ?Config $config = null,
 	) {
 		$this->dispatcher = new Dispatcher();
-		$this->initializeRegistry();
+		$this->initializeContainer();
 	}
 
 	public function load(Plugin $plugin): void
@@ -48,7 +48,7 @@ class App implements RouteAdder
 
 	public static function create(Factory $factory, ?Config $config = null, ?Container $container = null): self
 	{
-		$app = new self($factory, new Router(), new Registry(container: $container), $config);
+		$app = new self($factory, new Router(), new DuonContainer(container: $container), $config);
 
 		return $app;
 	}
@@ -118,15 +118,15 @@ class App implements RouteAdder
 	public function logger(Logger|callable $logger): void
 	{
 		if ($logger instanceof Logger) {
-			$this->registry->add(Logger::class, $logger);
+			$this->container->add(Logger::class, $logger);
 		} else {
-			$this->registry->add(Logger::class, Closure::fromCallable($logger));
+			$this->container->add(Logger::class, Closure::fromCallable($logger));
 		}
 	}
 
-	public function registry(): Registry
+	public function container(): DuonContainer
 	{
-		return $this->registry;
+		return $this->container;
 	}
 
 	/**
@@ -135,20 +135,20 @@ class App implements RouteAdder
 	 */
 	public function register(string $key, object|string $value): Entry
 	{
-		return $this->registry->add($key, $value);
+		return $this->container->add($key, $value);
 	}
 
-	public function initializeRegistry(): void
+	public function initializeContainer(): void
 	{
-		$this->registry->add(Router::class, $this->router);
-		$this->registry->add($this->router::class, $this->router);
+		$this->container->add(Router::class, $this->router);
+		$this->container->add($this->router::class, $this->router);
 
-		$this->registry->add(Factory::class, $this->factory);
-		$this->registry->add($this->factory::class, $this->factory);
+		$this->container->add(Factory::class, $this->factory);
+		$this->container->add($this->factory::class, $this->factory);
 
 		if ($this->config) {
-			$this->registry->add(Config::class, $this->config);
-			$this->registry->add($this->config::class, $this->config);
+			$this->container->add(Config::class, $this->config);
+			$this->container->add($this->config::class, $this->config);
 		}
 	}
 
@@ -158,7 +158,7 @@ class App implements RouteAdder
 		$route = $this->router->match($request);
 		$this->dispatcher->setBeforeHandlers($this->beforeHandlers);
 		$this->dispatcher->setAfterHandlers($this->afterHandlers);
-		$response = $this->dispatcher->dispatch($request, $route, $this->registry);
+		$response = $this->dispatcher->dispatch($request, $route, $this->container);
 
 		return (new Emitter())->emit($response) ? $response : false;
 	}
