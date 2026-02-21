@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.0](https://github.com/duonrun/core/releases/tag/0.1.0) (2026-02-21)
+## [0.2.0](https://github.com/duonrun/core/releases/tag/0.2.0) (2026-02-21)
 
 Codename: Jonas
 
