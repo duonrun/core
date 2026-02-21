@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Duon\Core;
 
 use Closure;
-use Duon\Container\Container as DuonContainer;
+use Duon\Container\Container;
 use Duon\Container\Entry;
 use Duon\Core\ConfigInterface as Config;
 use Duon\Core\Factory;
@@ -17,7 +17,7 @@ use Duon\Router\Route;
 use Duon\Router\RouteAdder;
 use Duon\Router\Router;
 use Override;
-use Psr\Container\ContainerInterface as Container;
+use Psr\Container\ContainerInterface as PsrContainer;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\MiddlewareInterface as Middleware;
@@ -34,7 +34,7 @@ class App implements RouteAdder
 	public function __construct(
 		protected readonly Factory $factory,
 		protected readonly Router $router,
-		protected readonly DuonContainer $container,
+		protected readonly Container $container,
 		protected readonly ?Config $config = null,
 	) {
 		$this->dispatcher = new Dispatcher();
@@ -46,9 +46,9 @@ class App implements RouteAdder
 		$plugin->load($this);
 	}
 
-	public static function create(Factory $factory, ?Config $config = null, ?Container $container = null): self
+	public static function create(Factory $factory, ?Config $config = null, ?PsrContainer $container = null): self
 	{
-		$app = new self($factory, new Router(), new DuonContainer(container: $container), $config);
+		$app = new self($factory, new Router(), new Container(container: $container), $config);
 
 		return $app;
 	}
@@ -124,7 +124,7 @@ class App implements RouteAdder
 		}
 	}
 
-	public function container(): DuonContainer
+	public function container(): Container
 	{
 		return $this->container;
 	}
