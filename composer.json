@@ -13,7 +13,7 @@
 	"require": {
 		"php": "^8.5",
 		"duon/cli": "^0.1",
-		"duon/registry": "^0.1",
+		"duon/container": "^0.2",
 		"duon/router": "^0.1",
 		"laminas/laminas-httphandlerrunner": "^2.4",
 		"psr/http-factory": "^1.0",
