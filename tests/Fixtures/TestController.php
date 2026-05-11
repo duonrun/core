@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests\Fixtures;
+namespace Celemas\Core\Tests\Fixtures;
 
-use Duon\Core\Factory\Nyholm;
-use Duon\Core\Response;
+use Celemas\Core\Factory\Nyholm;
+use Celemas\Core\Response;
 
 class TestController
 {

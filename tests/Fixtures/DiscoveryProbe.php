@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests\Fixtures;
+namespace Celemas\Core\Tests\Fixtures;
 
 final class DiscoveryProbe {}

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests\Fixtures;
+namespace Celemas\Core\Tests\Fixtures;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerTrait;

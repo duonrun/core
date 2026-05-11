@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests;
+namespace Celemas\Core\Tests;
 
-use Duon\Core\Exception\OutOfBoundsException;
-use Duon\Core\Request;
+use Celemas\Core\Exception\OutOfBoundsException;
+use Celemas\Core\Request;
 
 final class RequestCookieTest extends TestCase
 {

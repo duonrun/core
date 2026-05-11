@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests;
+namespace Celemas\Core\Tests;
 
-use Duon\Core\App;
-use Duon\Router\Group;
-use Duon\Router\Route;
+use Celemas\Core\App;
+use Celemas\Router\Group;
+use Celemas\Router\Route;
 
 final class AppRoutingTest extends TestCase
 {

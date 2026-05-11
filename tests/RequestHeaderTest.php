@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests;
+namespace Celemas\Core\Tests;
 
-use Duon\Core\Request;
+use Celemas\Core\Request;
 
 final class RequestHeaderTest extends TestCase
 {

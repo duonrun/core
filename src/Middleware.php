@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core;
+namespace Celemas\Core;
 
 use Override;
 use Psr\Http\Message\ResponseInterface;

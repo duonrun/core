@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Exception;
+namespace Celemas\Core\Exception;
 
 final class OutOfBoundsException extends RuntimeException implements CoreException {}

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Factory;
+namespace Celemas\Core\Factory;
 
-use Duon\Core\Exception\RuntimeException;
+use Celemas\Core\Exception\RuntimeException;
 
 /** @api */
 final class Discovery

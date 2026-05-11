@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests;
+namespace Celemas\Core\Tests;
 
-use Duon\Core\Exception\ValueError;
-use Duon\Core\Factory\Laminas;
+use Celemas\Core\Exception\ValueError;
+use Celemas\Core\Factory\Laminas;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ServerRequestFactoryInterface;

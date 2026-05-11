@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests;
+namespace Celemas\Core\Tests;
 
-use Duon\Container\Container;
-use Duon\Core\App;
-use Duon\Core\Factory\Factory;
-use Duon\Core\Factory\Nyholm;
+use Celemas\Container\Container;
+use Celemas\Core\App;
+use Celemas\Core\Factory\Factory;
+use Celemas\Core\Factory\Nyholm;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Psr\Http\Message\ResponseInterface as PsrResponse;

@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core;
+namespace Celemas\Core;
 
+use Celemas\Container\Container;
+use Celemas\Container\Entry;
+use Celemas\Core\Factory\Discovery;
+use Celemas\Core\Factory\Factory;
+use Celemas\Router\AddsBeforeAfter;
+use Celemas\Router\AddsRoutes;
+use Celemas\Router\Dispatcher;
+use Celemas\Router\Route;
+use Celemas\Router\RouteAdder;
+use Celemas\Router\Router;
+use Celemas\Router\RoutingHandler;
 use Closure;
-use Duon\Container\Container;
-use Duon\Container\Entry;
-use Duon\Core\Factory\Discovery;
-use Duon\Core\Factory\Factory;
-use Duon\Router\AddsBeforeAfter;
-use Duon\Router\AddsRoutes;
-use Duon\Router\Dispatcher;
-use Duon\Router\Route;
-use Duon\Router\RouteAdder;
-use Duon\Router\Router;
-use Duon\Router\RoutingHandler;
 use Override;
 use Psr\Container\ContainerInterface as PsrContainer;
 use Psr\Http\Message\ResponseInterface as Response;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests\Fixtures;
+namespace Celemas\Core\Tests\Fixtures;
 
-use Duon\Core\Factory\AbstractFactory;
+use Celemas\Core\Factory\AbstractFactory;
 use LogicException;
 use Override;
 use Psr\Http\Message\ServerRequestInterface as ServerRequest;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Exception;
+namespace Celemas\Core\Exception;
 
 /** @api */
 class HttpUnauthorized extends HttpError

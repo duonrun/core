@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core;
+namespace Celemas\Core;
 
-use Duon\Core\Exception\OutOfBoundsException;
-use Duon\Core\Exception\RuntimeException;
-use Duon\Router\RequestWrapper;
+use Celemas\Core\Exception\OutOfBoundsException;
+use Celemas\Core\Exception\RuntimeException;
+use Celemas\Router\RequestWrapper;
 use Override;
 use Psr\Http\Message\ServerRequestInterface as PsrServerRequest;
 use Psr\Http\Message\StreamInterface as PsrStream;

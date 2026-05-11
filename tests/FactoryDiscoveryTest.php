@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests;
+namespace Celemas\Core\Tests;
 
-use Duon\Core\Exception\RuntimeException;
-use Duon\Core\Factory\Discovery;
-use Duon\Core\Factory\Factory;
-use Duon\Core\Factory\Nyholm;
-use Duon\Core\Tests\Fixtures\DiscoveryGuzzle;
-use Duon\Core\Tests\Fixtures\DiscoveryLaminas;
-use Duon\Core\Tests\Fixtures\DiscoveryProbe;
+use Celemas\Core\Exception\RuntimeException;
+use Celemas\Core\Factory\Discovery;
+use Celemas\Core\Factory\Factory;
+use Celemas\Core\Factory\Nyholm;
+use Celemas\Core\Tests\Fixtures\DiscoveryGuzzle;
+use Celemas\Core\Tests\Fixtures\DiscoveryLaminas;
+use Celemas\Core\Tests\Fixtures\DiscoveryProbe;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 
@@ -39,7 +39,7 @@ final class FactoryDiscoveryTest extends TestCase
 
 			class_alias(DiscoveryProbe::class, 'Nyholm\\Psr7\\Factory\\Psr17Factory');
 			class_alias(DiscoveryProbe::class, 'GuzzleHttp\\Psr7\\HttpFactory');
-			class_alias(DiscoveryGuzzle::class, 'Duon\\Core\\Factory\\Guzzle');
+			class_alias(DiscoveryGuzzle::class, 'Celemas\\Core\\Factory\\Guzzle');
 
 			$class = Discovery::create()::class;
 		} finally {
@@ -61,7 +61,7 @@ final class FactoryDiscoveryTest extends TestCase
 			$this->loadDiscoveryFixtures();
 
 			class_alias(DiscoveryProbe::class, 'Laminas\\Diactoros\\RequestFactory');
-			class_alias(DiscoveryLaminas::class, 'Duon\\Core\\Factory\\Laminas');
+			class_alias(DiscoveryLaminas::class, 'Celemas\\Core\\Factory\\Laminas');
 
 			$class = Discovery::create()::class;
 		} finally {

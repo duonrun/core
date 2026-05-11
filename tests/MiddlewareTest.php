@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests;
+namespace Celemas\Core\Tests;
 
-use Duon\Core\Middleware;
-use Duon\Core\Request;
-use Duon\Core\Response;
+use Celemas\Core\Middleware;
+use Celemas\Core\Request;
+use Celemas\Core\Response;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
 use Psr\Http\Message\ResponseInterface;

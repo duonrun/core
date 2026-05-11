@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests;
+namespace Celemas\Core\Tests;
 
-use Duon\Container\Container;
-use Duon\Core\App;
-use Duon\Core\Factory\Factory;
-use Duon\Core\Factory\Nyholm;
-use Duon\Core\Plugin;
-use Duon\Core\Tests\Fixtures\TestContainer;
-use Duon\Core\Tests\Fixtures\TestLogger;
-use Duon\Router\Router;
+use Celemas\Container\Container;
+use Celemas\Core\App;
+use Celemas\Core\Factory\Factory;
+use Celemas\Core\Factory\Nyholm;
+use Celemas\Core\Plugin;
+use Celemas\Core\Tests\Fixtures\TestContainer;
+use Celemas\Core\Tests\Fixtures\TestLogger;
+use Celemas\Router\Router;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;

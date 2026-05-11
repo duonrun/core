@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests;
+namespace Celemas\Core\Tests;
 
-use Duon\Core\Exception\RuntimeException;
-use Duon\Core\Response;
+use Celemas\Core\Exception\RuntimeException;
+use Celemas\Core\Response;
 use stdClass;
 
 final class ResponseContentTest extends TestCase

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core;
+namespace Celemas\Core;
 
-use Duon\Core\Exception\FileNotFoundException;
-use Duon\Core\Exception\RuntimeException;
-use Duon\Core\Factory\Factory;
-use Duon\Router\ResponseWrapper;
+use Celemas\Core\Exception\FileNotFoundException;
+use Celemas\Core\Exception\RuntimeException;
+use Celemas\Core\Factory\Factory;
+use Celemas\Router\ResponseWrapper;
 use finfo;
 use Override;
 use Psr\Http\Message\ResponseInterface as PsrResponse;

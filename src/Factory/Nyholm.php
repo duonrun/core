@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Factory;
+namespace Celemas\Core\Factory;
 
-use Duon\Core\Exception\RuntimeException;
+use Celemas\Core\Exception\RuntimeException;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
 use Override;

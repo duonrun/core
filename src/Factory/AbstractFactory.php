@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Factory;
+namespace Celemas\Core\Factory;
 
-use Duon\Core\Exception\ValueError;
+use Celemas\Core\Exception\ValueError;
 use Override;
 use Psr\Http\Message\RequestFactoryInterface as Requestfactory;
 use Psr\Http\Message\RequestInterface as Request;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Factory;
+namespace Celemas\Core\Factory;
 
-use Duon\Core\Exception\RuntimeException;
+use Celemas\Core\Exception\RuntimeException;
 use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\Psr7\ServerRequest;
 use Override;

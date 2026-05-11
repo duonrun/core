@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Exception;
+namespace Celemas\Core\Exception;
 
-use Duon\Core\Request;
+use Celemas\Core\Request;
 use Exception;
 use Psr\Http\Message\ServerRequestInterface as PsrServerRequest;
 use Throwable;

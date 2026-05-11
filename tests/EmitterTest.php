@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests;
+namespace Celemas\Core\Tests;
 
-use Duon\Core\Emitter;
-use Duon\Core\Response;
+use Celemas\Core\Emitter;
+use Celemas\Core\Response;
 
 final class EmitterTest extends TestCase
 {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Tests;
+namespace Celemas\Core\Tests;
 
-use Duon\Core\Exception\HttpBadRequest;
-use Duon\Core\Exception\HttpConflict;
-use Duon\Core\Exception\HttpForbidden;
-use Duon\Core\Exception\HttpGone;
-use Duon\Core\Exception\HttpMethodNotAllowed;
-use Duon\Core\Exception\HttpNotFound;
-use Duon\Core\Exception\HttpUnauthorized;
-use Duon\Core\Request;
+use Celemas\Core\Exception\HttpBadRequest;
+use Celemas\Core\Exception\HttpConflict;
+use Celemas\Core\Exception\HttpForbidden;
+use Celemas\Core\Exception\HttpGone;
+use Celemas\Core\Exception\HttpMethodNotAllowed;
+use Celemas\Core\Exception\HttpNotFound;
+use Celemas\Core\Exception\HttpUnauthorized;
+use Celemas\Core\Request;
 use ReflectionMethod;
 use stdClass;
 

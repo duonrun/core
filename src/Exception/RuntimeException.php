@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core\Exception;
+namespace Celemas\Core\Exception;
 
 class RuntimeException extends \RuntimeException implements CoreException {}
