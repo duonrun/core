@@ -21,8 +21,8 @@
 	"require": {
 		"php": "^8.5",
 		"ext-fileinfo": "*",
-		"celemas/cli": "^0.1",
-		"celemas/container": "^0.3.0",
+		"celemas/cli": "^0.2",
+		"celemas/container": "^0.4.0",
 		"celemas/router": "dev-main",
 		"laminas/laminas-httphandlerrunner": "^2.4",
 		"psr/http-factory": "^1.0",
