@@ -29,7 +29,7 @@
 		"psr/http-message-implementation": "^1.0"
 	},
 	"require-dev": {
-		"celemas/dev": "^4.1",
+		"celemas/dev": "^4.2",
 		"guzzlehttp/psr7": "^2",
 		"laminas/laminas-diactoros": "^2 || ^3",
 		"nyholm/psr7": "^1.5",
